@@ -3,6 +3,8 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const projects = require("./data/projects.json");
+const articles = require("./data/articles.json");
 
 const app = express();
 
@@ -19,6 +21,14 @@ app.get("/", (req, res) => {
 app.get("/blog", (req, res) => {
   res.send("Welcome to the blog");
 });
+
+app.get("/api/projects", (req, res) => {
+  res.json(projects);
+});
+
+app.get("/api/articles", (req, res) => {
+  res.json(articles);
+})
 
 const port = 5005;
 app.listen(port, (err) => {
