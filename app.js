@@ -15,11 +15,11 @@ app.use(morgan("dev"));
 
 // ROUTES
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.sendFile(__dirname + "/views/home.html");
 });
 
 app.get("/blog", (req, res) => {
-  res.send("Welcome to the blog");
+  res.sendFile(__dirname + "/views/blog.html");
 });
 
 app.get("/api/projects", (req, res) => {
@@ -28,7 +28,11 @@ app.get("/api/projects", (req, res) => {
 
 app.get("/api/articles", (req, res) => {
   res.json(articles);
-})
+});
+
+app.get("*", (req, res) => {
+  res.status(404).sendFile(__dirname + "/views/not-found.html");
+});
 
 const port = 5005;
 app.listen(port, (err) => {
