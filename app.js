@@ -11,6 +11,15 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(morgan("dev"));
 
+// ROUTES
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+app.get("/blog", (req, res) => {
+  res.send("Welcome to the blog");
+});
+
 const port = 5005;
 app.listen(port, (err) => {
   if (err) throw err;
